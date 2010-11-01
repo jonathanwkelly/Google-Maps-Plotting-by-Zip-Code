@@ -1,0 +1,34 @@
+
+EXAMPLE
+=======================================================================================
+A working example can be seen here: 
+http://jonathanwkelly.com/Google-Maps-Plotting-by-Zip-Code/example.php
+
+
+REQUIREMENTS
+=======================================================================================
+[1] Google Maps API key: this code will not work until you generate your own and replace 
+    it in the code. Get a key here: http://code.google.com/apis/loader/signup.html
+	
+[2] MySQL & PHP running on your server: these are just the tools being used to generate 
+    the lat & long JS objects. You could just as easily use another language & DB.
+
+
+IMPLEMENTATION
+=======================================================================================
+There are two components to making this work. The first is the server-side code that 
+takes a zip code, does a lookup to get the latitude and longitude. The second is the 
+client-side code that initializes the Google map and does the plotting. In the example
+file, the PHP code is embedded within JS script tags, so that the echo'd output is
+rendered as a JS object. The map.js file then uses this object to plot its points.
+
+
+MYSQL TABLE
+=======================================================================================
+Regarding the us_zip_codes.sql file, it contains the queries to build a zip -> lat/long 
+reference table. I have scrubbed the table of the lower zip codes (those under 1000). 
+First, because doing a cursory look I couldn't seem to validate those zip codes, and 
+secondly I was getting duplications in the zip codes that they were being mapped to. 
+When I dropped all zip codes under 1,000, the duplicates were all gone. If you'd like 
+to get the table containing the duplicates, then use the corresponding 
+us_zip_codes.with_duplicates.sql file. 
